@@ -1,0 +1,158 @@
+.title {
+    text-align: center;
+    position: relative;
+    padding: 5%;
+    background-color: #bbe4e9;
+    font-size: 30px;
+}
+
+.title span {
+    font-size: 55px;
+    position: relative;
+    display: inline-block;
+    color: black;
+    text-transform: uppercase;
+    animation: flip 2s infinite;
+    animation-delay: calc(.2s * var(--i))
+}
+
+@keyframes flip {
+    0%,80% {
+        transform: rotateY(360deg) 
+    }
+}
+
+body {
+    background-color: #eaf6f6;
+    font-family: 'Lora', serif;
+}
+
+p {
+    text-align: center;
+}
+
+.card {
+    box-shadow: 0 5px 10px 0 rgba(0,0,0,0.2);
+    opacity: 0.5;
+    transition: 1s;
+    padding: 5px;
+    width: 50%;
+    height: 100%;
+}
+
+.card.left {
+    margin-right: 30px;
+}
+
+.card.right {
+    margin-left: 30px;
+}
+
+.card:hover {
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,0.6);
+    opacity: 1;
+    width: 70%;
+    
+}
+
+.text-container {
+    padding: 5px 15px;
+}
+
+div.button {
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.vis {
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+}
+
+.display-row {
+    display: inline-flex;
+    justify-content: center;
+    padding-left: 3%;
+    padding-right: 3%;
+    padding-top: 5%;
+    width: 90%;
+}
+
+.dropdown {
+    display: inline-block;
+    position: absolute;
+    top: 2800px;
+    left: 400px;
+    transition: left 0.75s linear 0s; 
+}
+
+.card:hover .dropdown {
+    left: 275px;
+    transition: left 0.75s linear 0s;
+}
+
+.dd-button {
+    display: inline-block;
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 10px 30px 10px 20px;
+    background-color: #ffffff;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.dd-button:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    width: 0; 
+    height: 0; 
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid black;
+}
+
+.dd-button:hover {
+    background-color: #eeeeee;
+}
+
+
+.dd-input {
+    display: none;
+}
+
+.dd-menu {
+    position: absolute;
+    top: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 0;
+    margin: 2px 0 0 0;
+    box-shadow: 0 0 6px 0 rgba(0,0,0,0.1);
+    background-color: #ffffff;
+    list-style-type: none;
+}
+
+.dd-input + .dd-menu {
+    display: none;
+} 
+
+.dd-input:checked + .dd-menu {
+    display: block;
+} 
+
+.dd-menu li {
+    padding: 10px 20px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.dd-menu li:hover {
+    background-color: #f6f6f6;
+}
+  
+  

@@ -1,0 +1,169 @@
+<html>  
+<head>  
+<script type="text/javascript" src="app.js"></script>  
+<link rel="stylesheet" href="styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/d3-regression@1.3.10/dist/d3-regression.min.js"></script>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.13.0/d3-legend.js"></script>
+
+</head>
+<body onload=plotAll()>
+    <div class="title">
+        <h1>
+            &#x1F522 👨‍💻 
+            <span style="--i:1">D</span>ata 
+            <span style="--i:2">S</span>cientists 
+            <span style="--i:2">I</span>n 
+            <span style="--i:2">T</span>oday's 
+            <span style="--i:3">J</span>ob
+            <span style="--i:4">M</span>arket 
+            👩‍💻 &#x1F4CA
+        </h1>
+    </div>
+    <div class="display-row">
+        <div class="card left" id="vis1">
+            <div class="vis">
+                <div class="button">
+                    <input id="avg" type="radio" name="salary" value="Avg Salary(K)" checked="checked">
+                    <label>Avg. Salary vs. Co. Rating</label>
+                    <input id="low" type="radio" name="salary" value="Lower Salary">
+                    <label>Low Salary vs. Co. Rating</label>
+                    <input id="high" type="radio" name="salary" value="Upper Salary">
+                    <label>High Salary vs. Co. Rating</label>
+                </div>
+                <svg></svg>
+            </div>
+            <div class="text-container">
+                <h4><em>Q: Are data scientists of different salary ranges satisfied with their jobs and companies?</em></h4>
+                <p>The good news is, as it seems, no matter whether it be a young professional just breaking into
+                   the data science world or seasoned veteran holding senior positions, data scientists, or data science
+                   people, are generally feeling positive about their work and the place they are employed at. Compare
+                   and contrast across three scatterplot, you can hardly observe any strong cluster that centers around
+                   the negative end of company ratings, no matter the amount they are payed. So it seems there's 
+                   not so much to fear about at least in the perspective of culture and experience.
+                </p>
+                <p>Marks: points</p>
+                <p>Choice of color: different shades of green, the more saturated, the more &#128181</p>
+                <p>Channels: horizontal and vertical positions, color</p>
+            </div>
+        </div>
+        <div class="card right" id="vis2">
+            <div class="vis">
+                <svg></svg>
+            </div>
+            <div class="text-container">
+                <h4><em>Q: How much on average on data science people getting paid across different industries?</em></h4>
+                <p>First off, the scope of "industries" here is narrowed down to those that are or have been
+                    posting more than 20 open data science-related positions so that this assessment of "averages"
+                    can be a little more generally applicable, while also shedding some light on the industries 
+                    that crave data science talents.
+                    Just to spoil a little, according to our trusted source of data, the Internet industry appears
+                    on top to be the most welcoming industrial-level employer to data science people with the most
+                    luring compensation package. Give it a shot if you are a data scientist still out there job
+                    hunting!
+                </p>
+                <p>Marks: lines</p>
+                <p>Choice of color: different shades of green, the more saturated, the more &#128181</p>
+                <p>Channels: horizontal and vertical positions, color</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="display-row">
+        <div class="card left" id="vis3">
+            <div class="vis">
+                <svg></svg>
+            </div>
+            <div class="text-container">
+                <h4><em>Q: So what positions are open exactly for each industry?</em></h4>
+                <p>Let's make it plain and simple with the summary here. Go be a data scientist. Everyone, 
+                    literally everyone, is hiring a data scientist! If not, go be a data engineer, everyone
+                    wants them too! Then, here are a few notable observation, "other" scientist (perhaps statistician, 
+                    pharmacist?) is most wanted by the bio-tech world; analyst is most popular to the insurance world.
+                    However, not everything is perfect. For instance, if you were to pursue the career of a machine learning 
+                    engineer, it would be a long way ahead.
+                </p>
+                <p>Marks: area</p>
+                <p>Choice of color: a list of salient, lightly-saturated colors so that even the smallest area can be differentiated</p>
+                <p>Channels: horizontal and vertical positions, color</p>
+            </div>
+        </div>
+        <div class="card right" id="vis4">
+            <div class="vis">
+                <svg></svg>
+            </div>
+            <div class="container">
+                <h4><em>Q: Where are DS people working at? where wants us the most?</em></h4>
+                <p>The more saturated a region is, the more positions are open and hosted in that state. More specifically, 
+                    the larger and more saturated a circle is, the more positions are available at that city! Don't you 
+                    always dream of working by the beach and under the sunshine, or working next to the Times Square and 
+                    get your lunch break at some fancy restaurants on top of Rockafeller? Well, it's totally good news to
+                    you since San Francisco, California and New York City, New York are definitely under the radar here.
+                </p>
+                <p>Marks: area</p>
+                <p>Choice of color: d3.interpolateReds (saturated reds indicate high priority while less saturated ones are still visible)</p>
+                <p>Channels: horizontal and vertical positions, color, area</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="display-row">
+        <div class="card center" id="vis5">
+            <div class="vis">
+                <label class="dropdown">
+                    <div class="dd-button">
+                      Select A Industry to Navigate
+                    </div>
+                    <input type="checkbox" class="dd-input" id="industry">
+                    <ul class="dd-menu">
+                      <li>Aerospace & Defense</li>
+                      <li>Health Care Services & Hospitals</li>
+                      <li>Advertising & Marketing</li>
+                      <li>Consulting</li>
+                      <li>Internet</li>
+                      <li>Biotech & Pharmaceuticals</li>
+                      <li>Enterprise Software & Network Solutions</li>
+                      <li>Insurance Carriers</li>
+                      <li>IT Services</li>
+                      <li>Computer Hardware & Software</li>
+                      <li>Consumer Products Manufacturing</li>
+                    </ul>
+                </label>
+                <svg></svg>
+            </div>
+            <div class="text-container">
+                <h4><em>Q: That streamgraph was a little hard to understand, is there a better look?</em></h4>
+                <p>Well, I tried my best, but here it is. Here you can really get a sense of what type of
+                    talents are sought-after in different industries. But hey, when in doubt, data science
+                    and data engineering are always the way-to-go.
+                </p>
+                <p>Marks: area</p>
+                <p>Choice of color: d3.schemeSet3 (lightly-saturated, viewer-friendly)</p>
+                <p>Channels: area, tilt (radian), color</p>
+            </div>
+        </div>
+    </div>
+    <div class="display-row">
+        <div class="card center" id="vis6">
+            <div class="vis">
+                <svg></svg>
+            </div>
+            <div class="text-container">
+                <h4><b>Q: How much are some of most common data-related occupation making?</b></h4>
+                <p>Here, the top 4 most common/popular data-related jobs are presented, as these 4<br>
+                    types of positions each offer 100+ open positions for hire. If you move your cursor<br>
+                    on top of each boxplot, you'll see the detailed breakdown of that positions' median<br>
+                    salary, upper inter-quantile salary, lower inter-quantile salary, etc. In short, <br>
+                    data science is still hot and data scientists are still making the most fortune!
+                </p>
+                <p>Marks: points, lines</p>
+                <p>Choice of color: #bbe4e9 (congruent with the page's theme, lightly-saturated)</p>
+                <p>Channels: horizontal and vertical positions</p>
+            </div>
+        </div>
+    </div>
+</body>  
+</html>
